@@ -634,6 +634,6 @@ class OGRAMM extends HTMLElement {
             super();
             let shadowRoot = this.attachShadow({ mode: "open" });
 
-}customElements.define("main-Organigramm", OGRAMM);
+}customElements.define("com-gmail-cse-ari007-d3forcebubble", OGRAMM);
   
 })();
