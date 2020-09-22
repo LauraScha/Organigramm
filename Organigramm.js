@@ -27,6 +27,19 @@ const dataSource = {
 
         (function () {
             
+            let template = document.createElement("template");
+            template.innerHTML = `
+
+    <div>
+        <svg width=100% height=100% id= "chart-Organigramm"></svg></div>
+    <style>
+
+
+
+
+
+    </style>`;
+            
             class OGRAMM extends HTMLElement {
                 constructor() {
                     super();
