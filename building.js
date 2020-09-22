@@ -1,7 +1,8 @@
 (function () {
     let template = document.createElement("template");
-    template.innerHTML = `<input type="text" value="23" id="Input">`;
-
+    template.innerHTML = `<form id="form">
+        <table style ="width:100%;"><tr><td><div>Data:<\div><div><textarea style="min-height: 150px; width:100%;">[{"Das ist ein Test"}]<\textarea><\div><\form><style>:host{display:block;padding:1em 1em 1em 1em;}
+        input:out-of-range{background-color:rgba(255,0,0,0.25);}<\style>`;
 
     class OGRAMM_bld extends HTMLElement {
         constructor() {
