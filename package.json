@@ -1,5 +1,5 @@
 {
-  "id": "",
+  "id": "com.gmail.cse.ari007.d3forcebubble",
   "name": "organigramm",
   "version": "0.0.0",
   "description": "Organigramm",
@@ -9,20 +9,34 @@
   "webcomponents": [
     {
       "kind": "main",
-      "tag": "main-Organigramm",
-      "url": "https://github.com/LauraScha/Organigramm/blob/master/orga.js",
+      "tag": "com-gmail-cse-ari007-d3forcebubble",
+      "url": "https://github.com/LauraScha/Organigramm/blob/master/Organigramm.js",
       "integrity": "",
-      "ignoreIntegrity": false
+      "ignoreIntegrity": true
     }
-    
+
   ],
 
   "properties": {
-
+    "data": {
+      "type": "string",
+      "description": "Data in JSON format",
+      "default": "[{\"name\":\"Label 1\",\"size\":850.84, \"color\":50.7, \"xvalue\":100},{\"name\":\"Label 2\",\"size\":3308.76, \"color\":10, \"xvalue\":20.5}]"
+    }
 
   },
   "methods": {
-
+    "setData": {
+      "description": "Add Node to Organigramm",
+      "parameters": [
+        {
+          "name": "newData",
+          "type": "string",
+          "description": "New Data of the Chart"
+        }
+      ],
+      "body": "this.data = newData;"
+    }
 
   },
 
@@ -33,5 +47,5 @@
 
   }
 
-  }
+}
 
