@@ -13,6 +13,13 @@
       "url": "https://github.com/LauraScha/Organigramm/blob/master/Organigramm.js",
       "integrity": "",
       "ignoreIntegrity": true
+    },
+    {
+      "kind": "builder",
+      "tag": "com-gmail-cse-ari007-d3forcebubble-bps",
+      "url": "https://github.com/LauraScha/Organigramm/blob/master/building.js",
+      "integrity": "",
+      "ignoreIntegrity": true
     }
 
   ],
