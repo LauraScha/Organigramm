@@ -1,7 +1,42 @@
 
 
         (function () {
-                    
+                let template = document.createElement("template");
+    template.innerHTML = `
+
+    <div>
+        <svg width=100% height=100% id= "chart-Organigramm"></svg></div>
+                <style>
+.node {
+   cursor:default;
+}
+.node text {
+    font: 12px sans-serif;
+    fill: #FFFFFF;
+}
+ 
+.node rect {
+ 
+}
+ 
+/* Lines */
+.link {
+  fill: none;
+  stroke: #424242;
+  stroke-width: 1.5px;
+}
+ 
+#body {
+  cursor: move;
+  height:700px;
+  width:100%;
+  background-color:#fff;
+  border:1px solid black;
+  margin: 0px 0px 10px 0px;
+}
+</style>`;
+                
+                
             
     const dataSource = {
     chart: {
