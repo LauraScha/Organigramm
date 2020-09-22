@@ -11,9 +11,9 @@ const dataSource = {
 
     ]
 
-(function () {
-    let template = document.createElement("template");
-    template.innerHTML = `
+        (function () {
+            let template = document.createElement("template");
+            template.innerHTML = `
 
     <div>
         <svg width=100% height=100% id= "chart-Organigramm"></svg></div>
@@ -26,35 +26,28 @@ const dataSource = {
     </style>`;
 
 
-    class OGRAMM extends HTMLElement {
-        constructor() {
-            super();
-            let shadowRoot = this.attachShadow({ mode: "open" });
-            //shadowRoot.appendChild(template.content.cloneNode(true));
-           // this._props = this.d3ForceBubbleDefaultSettings();
-            //this._init = true;
-           // this._firstUpdate = true;
-           // this._firstResize = true;
-            //this._selectionEvent = false;
-        }
-         onCustomWidgetAfterUpdate(changedProperties) {
-        try {
-            await host.loadScript("https://github.com/LauraScha/Organigramm/blob/master/Orgaserver", shadow);
-        } catch (e) {
-            console.log(JSON.stringify(e));
-        }
-        finally { host.drawChart(data, props); }
-    };
+            class OGRAMM extends HTMLElement {
+                constructor() {
+                    super();
+                    let shadowRoot = this.attachShadow({ mode: "open" });
+                    //shadowRoot.appendChild(template.content.cloneNode(true));
+                    // this._props = this.d3ForceBubbleDefaultSettings();
+                    //this._init = true;
+                    // this._firstUpdate = true;
+                    // this._firstResize = true;
+                    //this._selectionEvent = false;
+                }
+                onCustomWidgetAfterUpdate(changedProperties) {
+                    try {
+                        await host.loadScript("https://github.com/LauraScha/Organigramm/blob/master/Orgaserver", shadow);
+                    } catch (e) {
+                        console.log(JSON.stringify(e));
+                    }
+                    finally { host.drawChart(data, props); }
+                }
+
+            }
+            customElements.define("com-gmail-cse-ari007-d3forcebubble", OGRAMM);
 
 
-
-    }
-
-
-
-
-
-
-
-        
-})();
+        })();
