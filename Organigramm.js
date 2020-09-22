@@ -8,24 +8,25 @@ const dataSource = {
         divlinealpha: "0"
     },
     dataset: [
-
+        {
+      data: [
+        {
+          id: "01",
+          label: "Chairman{br}Board of Directors",
+          color: "#5D62B5",
+          x: "60",
+          y: "680",
+          shape: "rectangle",
+          width: "130",
+          height: "50"
+        },
     ]
+        }
+   ]
+};
 
         (function () {
-            let template = document.createElement("template");
-            template.innerHTML = `
-
-    <div>
-        <svg width=100% height=100% id= "chart-Organigramm"></svg></div>
-    <style>
-
-
-
-
-
-    </style>`;
-
-
+            
             class OGRAMM extends HTMLElement {
                 constructor() {
                     super();
