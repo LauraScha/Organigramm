@@ -48,7 +48,7 @@
                             width: "100%",
                             height: "100%",
                             dataFormat: "json",
-                            dataSource
+                            dataSource.drawChart(),
                     }).render();
 });
                 }
