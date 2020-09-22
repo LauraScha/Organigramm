@@ -1,0 +1,50 @@
+{
+  "id": "",
+  "name": "organigramm",
+  "version": "0.0.0",
+  "description": "Organigramm",
+  "newInstancePrefix": "OGRAMM",
+  "vendor": "Organigramm",
+
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "main-Organigramm",
+      "url": "", //!!!!!!
+      "integrity": "",
+      "ignoreIntegrity": false
+    },
+    {
+      "kind": "styling",
+      "tag": "styling-Organigramm",
+      "url": "", //!!!!!!!!!
+      "integrity": "",
+      "ignoreIntegrity": false
+    },
+    {
+      "kind": "builder",
+      "tag": "builder-Organigramm",
+      "url": "", //!!!!!!!!
+      "integrity": "",
+      "ignoreIntegrity": false
+    }
+  ],
+
+  "properties": {
+
+
+  },
+  "methods": {
+
+
+  },
+
+  "events": {
+    "onClick": {
+      "description": "Called when the user click on Item."
+    }
+
+  }
+
+  }
+
