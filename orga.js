@@ -1,4 +1,4 @@
-(function () {
+
 
 const dataSource = {
   chart: {
@@ -617,7 +617,7 @@ const dataSource = {
     }
   ]
 };
-
+(function () {
 FusionCharts.ready(function() {
   var myChart = new FusionCharts({
     type: "dragnode",
