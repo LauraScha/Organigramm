@@ -53,7 +53,7 @@
                     // this._firstResize = true;
                     //this._selectionEvent = false;
                 }
-                onCustomWidgetAfterUpdate(changedProperties) {
+                onCustomWidgetBeforeUpdate(changedProperties) {
                     FusionCharts.ready(function() {
                         var myChart = new FusionCharts({
                             type: "dragnode",
