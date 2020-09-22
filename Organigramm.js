@@ -33,23 +33,19 @@
                 constructor() {
                     super();
                     let shadowRoot = this.attachShadow({ mode: "open" });
-                    //shadowRoot.appendChild(template.content.cloneNode(true));
-                    // this._props = this.d3ForceBubbleDefaultSettings();
-                    //this._init = true;
-                    // this._firstUpdate = true;
-                    // this._firstResize = true;
-                    //this._selectionEvent = false;
+          
                 }
                 onCustomWidgetBeforeUpdate(changedProperties) {
-                    FusionCharts.ready(function() {
-                        var myChart = new FusionCharts({
-                            type: "dragnode",
-                            renderAt: "chart-container",
-                            width: "100%",
-                            height: "100%",
-                            dataFormat: "json",
-                            dataSource.drawChart(),
-                    }).render();
+                     var myChart = new FusionCharts({
+                    type: "dragnode",
+                    renderAt: "chart-container",
+                    width: "100%",
+                    height: "100%",
+                    dataFormat: "json",
+                    dataSource
+                }).render(); 
+                }
+                    
 });
                 }
 
