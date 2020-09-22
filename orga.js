@@ -1,3 +1,5 @@
+(function () {
+
 const dataSource = {
   chart: {
     caption: "Silvers Financial Services - Org Chart",
@@ -626,3 +628,12 @@ FusionCharts.ready(function() {
     dataSource
   }).render();
 });
+
+class OGRAMM extends HTMLElement {
+        constructor() {
+            super();
+            let shadowRoot = this.attachShadow({ mode: "open" });
+
+}customElements.define("main-Organigramm", OGRAMM);
+  
+})();
