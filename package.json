@@ -10,24 +10,11 @@
     {
       "kind": "main",
       "tag": "main-Organigramm",
-      "url": "", //!!!!!!
-      "integrity": "",
-      "ignoreIntegrity": false
-    },
-    {
-      "kind": "styling",
-      "tag": "styling-Organigramm",
-      "url": "", //!!!!!!!!!
-      "integrity": "",
-      "ignoreIntegrity": false
-    },
-    {
-      "kind": "builder",
-      "tag": "builder-Organigramm",
-      "url": "", //!!!!!!!!
+      "url": "https://github.com/LauraScha/Organigramm/blob/master/orga.js",
       "integrity": "",
       "ignoreIntegrity": false
     }
+    
   ],
 
   "properties": {
