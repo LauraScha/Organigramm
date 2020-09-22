@@ -12,7 +12,7 @@ const dataSource = {
       data: [
         {
           id: "01",
-          label: "Chairman{br}Board of Directors",
+          label: "Prodato",
           color: "#5D62B5",
           x: "60",
           y: "680",
@@ -39,12 +39,16 @@ const dataSource = {
                     //this._selectionEvent = false;
                 }
                 onCustomWidgetAfterUpdate(changedProperties) {
-                    try {
-                        await host.loadScript("https://github.com/LauraScha/Organigramm/blob/master/Orgaserver", shadow);
-                    } catch (e) {
-                        console.log(JSON.stringify(e));
-                    }
-                    finally { host.drawChart(data, props); }
+                    FusionCharts.ready(function() {
+                        var myChart = new FusionCharts({
+                            type: "dragnode",
+                            renderAt: "chart-container",
+                            width: "100%",
+                            height: "100%",
+                            dataFormat: "json",
+                            dataSource
+                    }).render();
+});
                 }
 
             }
