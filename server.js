@@ -119,5 +119,5 @@
 			this.render(this.$value, this.$info, this.$color);
 		}
 	}	
-	customElements.define("com-demo-gauge", Box);
+	 customElements.define("com-gmail-cse-ari007-d3forcebubble", Box);
 })();
