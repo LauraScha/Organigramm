@@ -297,7 +297,7 @@
         }
         
 
-    } customElements.define("com-gmail-cse-ari007-d3forcebubbl", FBUBBLE);
+    } customElements.define("com-gmail-cse-ari007-d3forcebubbl", Test);
 
 
 })();
