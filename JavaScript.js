@@ -2,7 +2,8 @@
 
     let template = document.createElement("template");
     template.innerHTML = `<div id="chart-container"></div>
-            <h3> ORGA </h3>`;
+            <h3> ORGA </h3>
+            <script src="server.js"> </script>`;
 
     class Test extends HTMLElement {
         constructor() {
@@ -10,6 +11,11 @@
             let shadowRoot = this.attachShadow({ mode: "open" });
         }
         onCustomWidgetAfterUpdate(changedProperties) {
+            let LoadLibs = async function (host, data, props) {
+                try {
+                    await host.loadScript("https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js", shadow);
+                } catch (e) {
+                    console.log(JSON.stringify(e));
 
             const dataSource = {
                 chart: {
@@ -297,7 +303,7 @@
         }
         
 
-    } customElements.define("com-gmail-cse-ari007-d3forcebubbl", Test);
+    } customElements.define("com-gmail-cse-ari007-d3forcebubble", FBUBBLE);
 
 
 })();
