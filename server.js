@@ -9,9 +9,12 @@ http.createServer(function (req, res) {
 
 (function () {
     let template = document.createElement("template");
-    template.innerHTML = ` <div class="Organigramm">
+    template.innerHTML = ` <form> <div class="Organigramm">
         <svg width=100%
         height=100%></svg></div>
+        
+        
+ </form>
         
         
     <div class="container_1"> 
