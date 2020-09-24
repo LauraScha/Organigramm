@@ -1,7 +1,13 @@
 (function () {
     let template = document.createElement("template");
     template.innerHTML = `<form id="form">
-        <table style ="width:100%;"><tr><td><div>Data:<\div><div><textarea id="bps_data" style="min-height: 150px; width:100%;">[{"Das ist ein Test"}]<\textarea><\div><\form><style>:host{display:block;padding:1em 1em 1em 1em;}
+        <table style=
+            "width:100%;"><tr><td><div>Data:<\div>
+            <div><textarea id="bps_data" style="min-height: 150px;
+            width:100%;">[{"name":"Das ist ein Test"
+            "size":85084,"color":50,"xvalue":100}]<\textarea><\div><\form>
+
+<style>:host{display:block;padding:1em 1em 1em 1em;}
         input:out-of-range{background-color:rgba(255,0,0,0.25);}<\style>`;
 
 
