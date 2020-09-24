@@ -57,6 +57,9 @@ http.createServer(function (req, res) {
         constructor(dataRoot, svgNode, width = 1000, height = 100) {
             // The root of the JavaScript object that represents the data
             // that we'll be rendering.
+             super();
+            let shadowRoot = this.attachShadow({ mode: "open" });
+            shadowRoot.appendChild(template.content.cloneNode(true));
             this.x = 0;
             this.y = 0;
 
