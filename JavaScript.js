@@ -17,5 +17,5 @@ height=100%
 id=d3forcebubble></svg></div>
 <div id="chart-container">
             <h3> ORGA </h3></div>  `;
-
+ customElements.define("com-gmail-cse-ari007-d3forcebubbl");
 })();
