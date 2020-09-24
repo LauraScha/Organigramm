@@ -74,7 +74,7 @@ http.createServer(function (req, res) {
     }
 
     class TreeRenderer extends HTMLElement {
-        constructor(dataRoot, svgNode, width = 1000, height = 100) {
+      constructor(dataRoot, svgNode, width = 1000, height = 100) {
             // The root of the JavaScript object that represents the data
             // that we'll be rendering.
             this.dataRoot = dataRoot;
@@ -84,7 +84,8 @@ http.createServer(function (req, res) {
 
             this.width = width;
             this.height = height;
-
+        }
+        onCustomWidgetAfterUpdate(changedProperties) {
             this.nodeRoot = this.prepareData(this.dataRoot, 0, null);
 
             this.firstPass(this.nodeRoot);
