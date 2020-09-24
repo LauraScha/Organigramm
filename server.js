@@ -50,9 +50,10 @@ http.createServer(function (req, res) {
             renderer.draw();
         </script>`;
 
-
-    class TreeNode extends HTMLElement {
-        constructor(value) {
+    class TreeRenderer extends HTMLElement {
+        constructor(dataRoot, svgNode, width = 1000, height = 100) {
+            // The root of the JavaScript object that represents the data
+            // that we'll be rendering.
             this.x = 0;
             this.y = 0;
 
@@ -63,20 +64,6 @@ http.createServer(function (req, res) {
 
             this.prevSibling = null;
             this.children = [];
-        }
-
-        visit(func) {
-            func(this);
-            for (let i = 0; i < this.children.length; i++) {
-                this.children[i].visit(func);
-            }
-        }
-    }
-
-    class TreeRenderer extends HTMLElement {
-      constructor(dataRoot, svgNode, width = 1000, height = 100) {
-            // The root of the JavaScript object that represents the data
-            // that we'll be rendering.
             this.dataRoot = dataRoot;
 
             // The SVG DOM node that the renderer will insert elements into.
@@ -183,6 +170,12 @@ http.createServer(function (req, res) {
                 }
             }
         }
+        visit(func) {
+            func(this);
+            for (let i = 0; i < this.children.length; i++) {
+                this.children[i].visit(func);
+            }
+        }
     }
 
-})();
+});
