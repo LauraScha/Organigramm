@@ -1,187 +1,123 @@
-'use strict';
-var http = require('http');
-var port = process.env.PORT || 1337;
+(function() { 
+	let template = document.createElement("template");
+	template.innerHTML = `
+		<style>
+		:host {
+			border-radius: 10px;
+			border-width: 2px;
+			border-color: black;
+			border-style: solid;
+			display: block;
+		} 
 
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(function ());
-}).listen(port);
+		body {
+		  background: #fff;
+		}
+		
+		.metric {
+		  padding: 10%;
+		}
+		
+		.metric svg {
+		  max-width: 100%;
+		}
+		
+		.metric path {
+		  stroke-width: 75;
+		  stroke: #ecf0f1;
+		  fill: none;
+		}
+		
+		.metric text {
+		  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+		
+		.metric.participation path.data-arc {
+		  stroke: #27ae60;
+		}
+		
+		.metric.participation text {
+		  fill: #27ae60;
+		}		
+		</style>
+		
+		<div class="container">
+		  <div class="row">
+		    <div class="col-md-4 col-sm-4">
+		      <div class="metric participation" data-ratio=".95">
+		        <svg viewBox="0 0 1000 500">
+			        <path d="M 950 500 A 450 450 0 0 0 50 500"></path>
+					<text class='percentage' text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">0%</text>
+					<text class='title' text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal"></text>
+  	            </svg>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	`;
 
-(function () {
-    let template = document.createElement("template");
-    template.innerHTML = ` <form> <div class="Organigramm">
-        <svg width=100%
-        height=100%></svg></div>
-        
-        
- </form>
-        
-        
-    <div class="container_1"> 
-    <h3>Organigramm</h3>
-            <select name="Add/remove node">
-              <option> Add node </option>
-              <option> remove node </option>
-            </select>
-     </div>
+	class Box extends HTMLElement {
+		constructor() {
+			super(); 
+			let shadowRoot = this.attachShadow({mode: "open"});
+			shadowRoot.appendChild(template.content.cloneNode(true));
+			
+			this.$style = shadowRoot.querySelector('style');			
+			this.$svg = shadowRoot.querySelector('svg');
+			
+			this.addEventListener("click", event => {
+				var event = new Event("onClick");
+				this.dispatchEvent(event);
+			});
+			
+			this._props = {};
+		}
+		
+		render(val, info, color) {
+			var val1 = val * 0.01;
+			var x = this.svg_circle_arc_path(500, 500, 450, -90, val1 * 180.0 - 90);
+			var rounded = Math.round( val * 10 ) / 10;
 
-        <link rel="stylesheet" href="/styles.css" />
-        <script src="/server.js"></script>
+			
+			if(rounded >=0 && rounded <=100) {
+				this.$style.innerHTML = ':host {border-radius: 10px;border-width: 2px;border-color: black;border-style: solid;display: block;}.body {background: #fff;}.metric {padding: 10%;}.metric svg {max-width: 100%;}.metric path {stroke-width: 75;stroke: #ecf0f1;fill: none;}.metric text {font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;}.metric.participation path.data-arc {stroke: ' + color + ';}.metric.participation text {fill: ' + color + ';}';
+				this.$svg.innerHTML = '<path d="M 950 500 A 450 450 0 0 0 50 500"></path><text class="percentage" text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">' + rounded + '%</text><text class="title" text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal">' + info + '</text><path d="' + x + '" class="data-arc"></path>"';
+			}
+		}
+		  
+		polar_to_cartesian(cx, cy, radius, angle) {
+		    var radians;
+		    radians = (angle - 90) * Math.PI / 180.0;
+		    return [Math.round((cx + radius * Math.cos(radians)) * 100) / 100, Math.round((cy + radius * Math.sin(radians)) * 100) / 100];
+		}
+		
+		svg_circle_arc_path(x, y, radius, start_angle, end_angle) {
+		    var end_xy, start_xy;
+		    start_xy = this.polar_to_cartesian(x, y, radius, end_angle);
+		    end_xy = this.polar_to_cartesian(x, y, radius, start_angle);
+		    return "M " + start_xy[0] + " " + start_xy[1] + " A " + radius + " " + radius + " 0 0 0 " + end_xy[0] + " " + end_xy[1];
+		  };
+		  
 
-        <h1>Tree Drawing Algorithm</h1>
-        <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
-            <g transform="translate(0, 50)"></g>
-        </svg>
-        <script>
-            let root = {
-                value: "A",
-                children: [
-                    {
-                        value: "B",
-                        children: []
-                    },
-                    {
-                        value: "C",
-                        children: []
-                    }
-                ]
-            };
+		onCustomWidgetBeforeUpdate(changedProperties) {
+			this._props = { ...this._props, ...changedProperties };
+		}
 
-            let svgNode = document.querySelector("svg g");
-
-            let renderer = new TreeRenderer(root, svgNode);
-            renderer.draw();
-        </script>`;
-
-    class TreeRenderer extends HTMLElement {
-        constructor(dataRoot, svgNode, width = 1000, height = 100) {
-            // The root of the JavaScript object that represents the data
-            // that we'll be rendering.
-             super();
-            let shadowRoot = this.attachShadow({ mode: "open" });
-            shadowRoot.appendChild(template.content.cloneNode(true));
-            this.x = 0;
-            this.y = 0;
-
-            this.value = value;
-
-            this.final = 0;
-            this.modifier = 0;
-
-            this.prevSibling = null;
-            this.children = [];
-            this.dataRoot = dataRoot;
-
-            // The SVG DOM node that the renderer will insert elements into.
-            this.svgNode = svgNode;
-
-            this.width = width;
-            this.height = height;
-        }
-        onCustomWidgetAfterUpdate(changedProperties) {
-            this.nodeRoot = this.prepareData(this.dataRoot, 0, null);
-
-            this.firstPass(this.nodeRoot);
-            this.secondPass(this.nodeRoot, 0);
-            this.fixNodeConflicts(this.nodeRoot);
-            this.shiftTreeIntoFrame();
-        }
-
-        /*
-         * Build an intermediate form of the original data tree.  The nodes of
-         * this new tree will be instances of the TreeNode class.
-         */
-        prepareData(node, level, prevSibling) {
-            let treeNode = new TreeNode(node.value);
-            treeNode.x = level;
-            treeNode.prevSibling = prevSibling;
-
-            for (let i = 0; i < node.children.length; i++) {
-                treeNode.children.push(
-                    this.prepareData(
-                        node.children[i],
-                        level + 1,
-                        i >= 1 ? treeNode.children[i - 1] : null
-                    )
-                );
-            }
-            return treeNode;
-        }
-
-        /*
-         * Assign initial position values to every node based on how many
-         * prior siblings the current node has.
-         */
-        firstPass(node) {
-            for (let i = 0; i < node.children.length; i++) {
-                this.firstPass(node.children[i]);
-            }
-
-            if (node.prevSibling) {
-                node.y = node.prevSibling.y + NODE_SEP;
-            } else {
-                node.y = 0;
-            }
-
-            if (node.children.length == 1) {
-                node.modifier = node.y;
-            } else if (node.children.length >= 2) {
-                let minY = Infinity;
-                let maxY = -minY;
-                for (let i = 0; i < node.children.length; i++) {
-                    minY = Math.min(minY, node.children[i].y);
-                    maxY = Math.max(maxY, node.children[i].y);
-                }
-                node.modifier = node.y - (maxY - minY) / 2;
-            }
-        }
-
-        /*
-         * Adjust the position of children such that they end up centered
-         * under their parent.
-         */
-        secondPass(node, modSum) {
-            node.final = node.y + modSum;
-            for (let i = 0; i < node.children.length; i++) {
-                this.secondPass(node.children[i], node.modifier + modSum);
-            }
-        }
-
-        /*
-         * Work from the end of the tree back toward the beginning, fixing any
-         * subtree overlap as we recurse through the tree.
-         */
-        fixNodeConflicts(node) {
-            for (let i = 0; i < node.children.length; i++) {
-                this.fixNodeConflicts(node.children[i]);
-            }
-
-            for (let i = 0; i < node.children.length - 1; i++) {
-                // Get the bottom-most contour position of the current node
-                let botContour = -Infinity;
-                node.children[i].visit(
-                    node => (botContour = Math.max(botContour, node.final))
-                );
-
-                // Get the topmost contour position of the node underneath the current one
-                let topContour = Infinity;
-                node.children[i + 1].visit(
-                    node => (topContour = Math.min(topContour, node.final))
-                );
-
-                if (botContour >= topContour) {
-                    node.children[i + 1].visit(
-                        node => (node.final += botContour - topContour + NODE_SEP)
-                    );
-                }
-            }
-        }
-        visit(func) {
-            func(this);
-            for (let i = 0; i < this.children.length; i++) {
-                this.children[i].visit(func);
-            }
-        }
-    }
-
-});
+		onCustomWidgetAfterUpdate(changedProperties) {
+			if ("value" in changedProperties) {
+				this.$value = changedProperties["value"];
+			}
+			
+			if ("info" in changedProperties) {
+				this.$info = changedProperties["info"];
+			}
+			
+			if ("color" in changedProperties) {
+				this.$color = changedProperties["color"];
+			}
+			
+			this.render(this.$value, this.$info, this.$color);
+		}
+	}	
+	customElements.define("com-demo-gauge", Box);
+})();
