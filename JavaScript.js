@@ -1,9 +1,8 @@
 (function () {
 
     let template = document.createElement("template");
-    template.innerHTML = `<div id="chart-container"></div>
-            <h3> ORGA </h3>
-            <script src="server.js"> </script>`;
+    template.innerHTML = `<div id="chart-container">
+            <h3> ORGA </h3></div>`;
 
     class Test extends HTMLElement {
         constructor() {
@@ -303,7 +302,7 @@
         }
         
 
-    } customElements.define("com-gmail-cse-ari007-d3forcebubble", FBUBBLE);
+    } customElements.define("com-gmail-cse-ari007-d3forcebubbl", Test);
 
 
 })();
