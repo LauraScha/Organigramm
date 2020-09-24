@@ -2,7 +2,10 @@
 
     let template = document.createElement("template");
     template.innerHTML = `<div id="chart-container">
-            <h3> ORGA </h3></div>`;
+            <h3> ORGA </h3></div>  <div>
+<svg width=100%
+height=100%
+id=d3forcebubble></svg></div>`;
 
     class Test extends HTMLElement {
         constructor() {
