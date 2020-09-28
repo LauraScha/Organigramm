@@ -2,7 +2,7 @@
 (function () {
 
     let template = document.createElement("template");
-    template.innerHTML = `<input type="text" value="23" id="Input">`;
+    template.innerHTML = `<input type="text" value="Das ist ein Test" id="Input">`;
 
     class OGRAMM extends HTMLElement {
         constructor() {
